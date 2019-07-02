@@ -24,7 +24,7 @@
 		<div class="alert alert-default" role="alert">
 			<h3>該当する日時を選択してください</h3>
 		</div>
-		<form action="GoToSliderPageUserServlet" method="POST">
+		<form action="GoToSelfAssessmentStudentServlet" method="POST">
 			<table class="table">
 				<thead>
 					<tr>
