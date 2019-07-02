@@ -32,7 +32,9 @@
 		<auth-constraint>
 		</auth-constraint>
 	</security-constraint>
+	-->
 
+	<!--
 	<error-page>
 		<error-code>403</error-code>
 		<location>/Public/student/redirectIndex.jsp</location>
@@ -45,7 +47,7 @@
 		<error-code>500</error-code>
 		<location>/Public/student/redirectIndex.jsp</location>
 	</error-page>
-	 -->
+	-->
 
 	<servlet>
 		<servlet-name>LoginStudentServlet</servlet-name>
@@ -56,6 +58,39 @@
 		<url-pattern>/Public/student/LoginStudentServlet</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>LogoutStudentServlet</servlet-name>
+		<servlet-class>servlet.LogoutStudentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutStudentServlet</servlet-name>
+		<url-pattern>/Public/student/LogoutStudentServlet</url-pattern>
+	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>SearchDateStudentServlet</servlet-name>
+		<servlet-class>servlet.SearchDateStudentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchDateStudentServlet</servlet-name>
+		<url-pattern>/Public/student/SearchDateStudentServlet</url-pattern>
+	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>GoToSelfAssessmentStudentServlet</servlet-name>
+		<servlet-class>servlet.GoToSelfAssessmentStudentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GoToSelfAssessmentStudentServlet</servlet-name>
+		<url-pattern>/Public/student/GoToSelfAssessmentStudentServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>GoToHomePageStudentServlet</servlet-name>
+		<servlet-class>servlet.GoToHomePageStudentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GoToHomePageStudentServlet</servlet-name>
+		<url-pattern>/Public/student/GoToHomePageStudentServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
