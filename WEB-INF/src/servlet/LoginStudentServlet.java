@@ -27,9 +27,6 @@ public class LoginStudentServlet extends HttpServlet {
 		String studentId = request.getParameter("studentId");
 		String password = request.getParameter("password");
 
-		System.out.println(studentId);
-		System.out.println(password);
-
 		/*
 		 * DBにアクセス loginの確認
 		 */
