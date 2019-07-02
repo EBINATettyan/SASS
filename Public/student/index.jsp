@@ -27,7 +27,7 @@
 					<h3>Login Form</h3>
 					<br>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="ユーザID" name="userId">
+						<input type="text" class="form-control" placeholder="ユーザID" name="studentId">
 					</div>
 					<div class="form-group">
 						<input type="password" class="form-control" placeholder="パスワード" name="password">
