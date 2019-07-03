@@ -93,4 +93,14 @@
 		<servlet-name>GoToHomePageStudentServlet</servlet-name>
 		<url-pattern>/Public/student/GoToHomePageStudentServlet</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RecieveSelfAssessmentStudentServlet</servlet-name>
+		<servlet-class>servlet.RecieveSelfAssessmentStudentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RecieveSelfAssessmentStudentServlet</servlet-name>
+		<url-pattern>/Public/student/RecieveSelfAssessmentStudentServlet</url-pattern>
+	</servlet-mapping>
+
 </web-app>

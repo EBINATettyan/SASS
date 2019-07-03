@@ -10,12 +10,15 @@ public class SystemManager {
 
 		try {
 
+			System.out.println(valueList);
+
 			ProcessBuilder pb = new ProcessBuilder("python",
 					"/Applications/Eclipse_4.8.0.app/Contents/workspace/SASS/WEB-INF/src/estimation/OutlierAnalysis.py",
 					"" + valueList);
 			Process p = pb.start();
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			System.out.println(in.readLine());
 			String result = new String(in.readLine());
 
 			//次に、,の左側と右側を別々の変数に格納
@@ -29,9 +32,6 @@ public class SystemManager {
 			ArrayList<Float> resultList = new ArrayList<Float>();
 			resultList.add(result1);
 			resultList.add(result2);
-
-			System.out.println("分析結果（outlier_minimum：）"+result1);
-			System.out.println("分析結果（outlier_maximum：）"+result2);
 
 			return resultList;
 

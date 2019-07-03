@@ -81,7 +81,7 @@ public class SelfAssessmentDAO extends DriverAccessor {
 		con = createConnection();
 
 		try {
-			String sql = "select comp" + compId + " from self_assessmet_data where student_id = '" + studentId + "' AND date_id < "
+			String sql = "select comp" + compId + " from self_assessment_data where student_id = '" + studentId + "' AND date_id < "
 					+ dateId;
 
 			Statement checkStmt = con.createStatement();
