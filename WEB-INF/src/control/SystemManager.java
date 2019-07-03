@@ -11,7 +11,7 @@ public class SystemManager {
 		try {
 
 			ProcessBuilder pb = new ProcessBuilder("python",
-					"/Applications/Eclipse_4.8.0.app/Contents/workspace/SASS/WEB-INF/src/estimation/outlierAnalysis.py",
+					"/Applications/Eclipse_4.8.0.app/Contents/workspace/SASS/WEB-INF/src/estimation/OutlierAnalysis.py",
 					"" + valueList);
 			Process p = pb.start();
 
