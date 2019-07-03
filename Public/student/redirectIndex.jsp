@@ -14,14 +14,14 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#">slider system</a>
+					<a class="navbar-brand" href="#">self_assessment_support_system</a>
 				</div>
 			</div>
 		</nav>
 		<div class="col-xs-3 col-sm-3 col-md-3"></div>
 
 		<div class="col-xs-6 col-sm-6 col-md-6">
-			<form action='/SAPS/Public/user/LoginUserServlet' method='POST'>
+			<form action='/SASS/Public/student/LoginStudentServlet' method='POST'>
 
 				<!-- アラートの表示 -->
 				<div id="timeout">

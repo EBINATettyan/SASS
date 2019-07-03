@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String userId = (String) session.getAttribute("userId");
+	String studentId = (String) session.getAttribute("studentId");
 %>
 
 <body>
 
 	<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">slider system</a>
+			<a class="navbar-brand" href="#">self_assessment_support_system</a>
 		</div>
 
 		<ul class="nav navbar-nav navbar-right">
@@ -15,7 +15,7 @@
 					class="glyphicon glyphicon-align-justify"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="#">ユーザ名：<%=userId%></a></li>
+					<li><a href="#">ユーザ名：<%=studentId%></a></li>
 					<li><a href="#" onClick="topCheck()">ホーム画面に戻る</a></li>
 					<li><a href="#" onClick="check()">ログアウト</a></li>
 				</ul></li>
@@ -27,7 +27,7 @@
 	<script type="text/javascript">
 		function topCheck() {
 			if (window.confirm('ホーム画面に戻ります')) {
-				location.href = "GoToHomePageUserServlet";
+				location.href = "GoToHomePageStudentServlet";
 				return true;
 			} else {
 				window.alert('キャンセルされました');
@@ -38,7 +38,7 @@
 	<script type="text/javascript">
 		function check() {
 			if (window.confirm('ログアウトしてよろしいでしょうか？(ログイン画面に戻ります)')) {
-				location.href = "LogoutUserServlet";
+				location.href = "LogoutStudentServlet";
 				return true;
 			} else {
 				window.alert('キャンセルされました');
