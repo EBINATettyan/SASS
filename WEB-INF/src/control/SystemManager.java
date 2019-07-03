@@ -30,6 +30,9 @@ public class SystemManager {
 			resultList.add(result1);
 			resultList.add(result2);
 
+			System.out.println("分析結果（outlier_minimum：）"+result1);
+			System.out.println("分析結果（outlier_maximum：）"+result2);
+
 			return resultList;
 
 		} catch (Exception e) {
