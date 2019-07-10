@@ -46,7 +46,7 @@ public class DateDAO extends DriverAccessor {
 
 		try {
 
-			String sql = "select time from date where id ='" + dateId + "'";
+			String sql = "select * from date where id ='" + dateId + "'";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 
