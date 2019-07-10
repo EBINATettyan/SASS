@@ -58,24 +58,28 @@ public class RecieveSelfAssessmentStudentServlet extends HttpServlet {
 		//final File uploadDir = new File("/usr/share/tomcat/webapps/sassFile/" + studentId+"/"+dateId);
 		final File uploadDir = new File("/Users/csuser/Desktop/sassFile/" + studentId + "/" + dateId);
 		Part fl = request.getPart("fl");
+		if (fl == null) {
+			;
+		} else {
 
-		// ファイル名が重複するのを防ぐため、時間を取得する
-		SimpleDateFormat timeSub = new SimpleDateFormat("ss");
-		String time = timeSub.format(new Date()); // 20161205124121559
-		String fileName = time.concat(fl.getSubmittedFileName()).toString();
-		FileManager fileManager = new FileManager();
-		fileName = fileManager.moveFileName(fileName);
-		int kindId = fileManager.IdentifyFileKind(fileName);
+			// ファイル名が重複するのを防ぐため、時間を取得する
+			SimpleDateFormat timeSub = new SimpleDateFormat("ss");
+			String time = timeSub.format(new Date()); // 20161205124121559
+			String fileName = time.concat(fl.getSubmittedFileName()).toString();
+			FileManager fileManager = new FileManager();
+			fileName = fileManager.moveFileName(fileName);
+			int kindId = fileManager.IdentifyFileKind(fileName);
 
-		// ファイルの保存
-		save(fl, new File(uploadDir, fileName));
+			// ファイルの保存
+			save(fl, new File(uploadDir, fileName));
 
-		// uploadDirをStirngに変換
-		String path = uploadDir.toString();
+			// uploadDirをStirngに変換
+			String path = uploadDir.toString();
 
-		// DBに保存
-		FileDAO fileDAO = new FileDAO();
-		fileDAO.uploadFile(studentId, path, fileName, dateId, kindId, countId);
+			// DBに保存
+			FileDAO fileDAO = new FileDAO();
+			fileDAO.uploadFile(studentId, path, fileName, dateId, kindId, countId);
+		}
 
 		/* if文で条件分岐
 		 * 具体的には、compId==1であった場合、comp2の場合の外れ値を実行し、その値をsessionで保持し、getRequestDispatcher
@@ -91,7 +95,7 @@ public class RecieveSelfAssessmentStudentServlet extends HttpServlet {
 			 */
 			SelfAssessmentDAO selfAssessmentDAO = new SelfAssessmentDAO();
 			ArrayList<Integer> valueList = new ArrayList<Integer>();
-			valueList = selfAssessmentDAO.selectSelfAssessmentDataOrderByCompId(studentId, dateId, countId+1);
+			valueList = selfAssessmentDAO.selectSelfAssessmentDataOrderByCompId(studentId, dateId, countId + 1);
 
 			/*
 			 * 外れ値分析の実行
@@ -107,9 +111,9 @@ public class RecieveSelfAssessmentStudentServlet extends HttpServlet {
 			int checkId = selfAssessmentDAO.checkSelfAssessmentRegistration(studentId, dateId);
 			session.setAttribute("checkId", checkId);
 			session.setAttribute("result_outlier", result_outlier_next_comp);
-			request.setAttribute("countId", countId+1);
+			request.setAttribute("countId", countId + 1);
 			getServletContext().getRequestDispatcher("/Public/student/selfAssessment.jsp").forward(request, response);
-		}else if(countId == 2) {
+		} else if (countId == 2) {
 			int comp1 = (int) session.getAttribute("comp1");
 			int comp2 = compValue;
 			String comp1Comment = (String) session.getAttribute("comp1Comment");
@@ -118,7 +122,8 @@ public class RecieveSelfAssessmentStudentServlet extends HttpServlet {
 			int comp2CheckId = outlierCheckId;
 
 			SelfAssessmentDAO selfAssessmentDAO = new SelfAssessmentDAO();
-			selfAssessmentDAO.registSelfAssessment(studentId, dateId, comp1, comp2, comp1Comment, comp2Comment, comp1CheckId, comp2CheckId);
+			selfAssessmentDAO.registSelfAssessment(studentId, dateId, comp1, comp2, comp1Comment, comp2Comment,
+					comp1CheckId, comp2CheckId);
 
 			/*
 			 * sessionの破棄
