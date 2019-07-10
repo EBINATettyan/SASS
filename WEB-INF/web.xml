@@ -9,45 +9,19 @@
 		<welcome-file>/Public/student/index.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!--
-	<filter>
-		<filter-name>LoginFilter</filter-name>
-		<filter-class>filter.LoginFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>LoginFilter</filter-name>
-		<servlet-name>LogoutUserServlet</servlet-name>
-		<servlet-name>SearchDateUserServlet</servlet-name>
-		<servlet-name>GoToSliderPageUserServlet</servlet-name>
-		<servlet-name>RecieveSliderValueUserServlet</servlet-name>
-		<servlet-name>TestProgramServlet</servlet-name>
-		<servlet-name>GoToHomePageUserServlet</servlet-name>
-	</filter-mapping>
+	<!-- <filter> <filter-name>LoginFilter</filter-name> <filter-class>filter.LoginFilter</filter-class>
+		</filter> <filter-mapping> <filter-name>LoginFilter</filter-name> <servlet-name>LogoutUserServlet</servlet-name>
+		<servlet-name>SearchDateUserServlet</servlet-name> <servlet-name>GoToSliderPageUserServlet</servlet-name>
+		<servlet-name>RecieveSliderValueUserServlet</servlet-name> <servlet-name>TestProgramServlet</servlet-name>
+		<servlet-name>GoToHomePageUserServlet</servlet-name> </filter-mapping> <security-constraint>
+		<web-resource-collection> <web-resource-name>jsp-file</web-resource-name>
+		<url-pattern>/Public/student/home.jsp</url-pattern> </web-resource-collection>
+		<auth-constraint> </auth-constraint> </security-constraint> -->
 
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>jsp-file</web-resource-name>
-			<url-pattern>/Public/student/home.jsp</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-		</auth-constraint>
-	</security-constraint>
-	-->
-
-	<!--
-	<error-page>
-		<error-code>403</error-code>
-		<location>/Public/student/redirectIndex.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>404</error-code>
-		<location>/Public/student/redirectIndex.jsp</location>
-	</error-page>
-	<error-page>
-		<error-code>500</error-code>
-		<location>/Public/student/redirectIndex.jsp</location>
-	</error-page>
-	-->
+	<!-- <error-page> <error-code>403</error-code> <location>/Public/student/redirectIndex.jsp</location>
+		</error-page> <error-page> <error-code>404</error-code> <location>/Public/student/redirectIndex.jsp</location>
+		</error-page> <error-page> <error-code>500</error-code> <location>/Public/student/redirectIndex.jsp</location>
+		</error-page> -->
 
 	<servlet>
 		<servlet-name>LoginStudentServlet</servlet-name>
@@ -78,11 +52,13 @@
 
 	<servlet>
 		<servlet-name>GoToSelfAssessmentStudentServlet</servlet-name>
-		<servlet-class>servlet.GoToSelfAssessmentStudentServlet</servlet-class>
+		<servlet-class>servlet.GoToSelfAssessmentStudentServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GoToSelfAssessmentStudentServlet</servlet-name>
-		<url-pattern>/Public/student/GoToSelfAssessmentStudentServlet</url-pattern>
+		<url-pattern>/Public/student/GoToSelfAssessmentStudentServlet
+		</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -96,11 +72,34 @@
 
 	<servlet>
 		<servlet-name>RecieveSelfAssessmentStudentServlet</servlet-name>
-		<servlet-class>servlet.RecieveSelfAssessmentStudentServlet</servlet-class>
+		<servlet-class>servlet.RecieveSelfAssessmentStudentServlet
+		</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RecieveSelfAssessmentStudentServlet</servlet-name>
-		<url-pattern>/Public/student/RecieveSelfAssessmentStudentServlet</url-pattern>
+		<url-pattern>/Public/student/RecieveSelfAssessmentStudentServlet
+		</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>RecieveSelfAssessmentBeforeStudentServlet</servlet-name>
+		<servlet-class>servlet.RecieveSelfAssessmentBeforeStudentServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RecieveSelfAssessmentBeforeStudentServlet</servlet-name>
+		<url-pattern>/Public/student/RecieveSelfAssessmentBeforeStudentServlet
+		</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ResetSelfAssessmentStudentServlet</servlet-name>
+		<servlet-class>servlet.ResetSelfAssessmentStudentServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ResetSelfAssessmentStudentServlet</servlet-name>
+		<url-pattern>/Public/student/ResetSelfAssessmentStudentServlet
+		</url-pattern>
+	</servlet-mapping>
 </web-app>

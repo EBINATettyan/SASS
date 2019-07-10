@@ -6,10 +6,6 @@
 	String time = (String) session.getAttribute("time");
 	int countId = (int) request.getAttribute("countId");
 	int checkId = (int) session.getAttribute("checkId");
-	@SuppressWarnings("unchecked")
-	ArrayList<Float> result_outlier = (ArrayList<Float>) session.getAttribute("result_outlier");
-	float outlierMinimum = result_outlier.get(0);
-	float outlierMaximum = result_outlier.get(1);
 %>
 
 <!DOCTYPE html>
@@ -25,7 +21,7 @@
 
 	<jsp:include page="/Public/common/jsp/studentLayout.jsp" />
 
-	<form name='form1' enctype="multipart/form-data">
+	<form class="form-inline" enctype="multipart/form-data" method="post" action="RecieveSelfAssessmentBeforeStudentServlet">
 		<div class="col-xs-2 col-sm-2 col-md-2"></div>
 		<div class="col-xs-8 col-sm-8 col-md-8">
 			<h3><%=title%>の振り返り（<%=countId%>）
@@ -72,25 +68,15 @@
 					<input id="file" type="text" class="form-control" required disabled>
 				</div>
 			</div>
-
-			<%if(checkId == 0){ %>
-			<div id="ex_box_div_a" style="text-align: right">
-				<div>
-					<button type="button" class="btn btn-success" onclick="getRadioValue('comp_value');">submit</button>
-				</div>
+			<%
+				if (checkId == 0) {
+			%>
+			<div style="text-align: right">
+				<button type="submit" class="btn btn-success">submit</button>
 			</div>
-			<%} %>
-			<!-- 表示非表示切り替え -->
-			<div id="ex_box_div_b" style="display: none;">
-				<div class="form-group">
-					<h4>なぜ、そのような自己評価をしたのか、理由を記述してください</h4>
-					<textarea class="form-control" name="comp<%=countId%>Comment" rows="5" style="width: 100%"></textarea>
-				</div>
-				<div style="text-align: right">
-					<button type="button" class="btn btn-warning" onclick="getReset()">reset</button>
-					<button type="submit" class="btn btn-success" onclick="getComment()">submit</button>
-				</div>
-			</div>
+			<%
+				}
+			%>
 		</div>
 
 		<div class="col-xs-2 col-sm-2 col-md-2"></div>
@@ -98,44 +84,7 @@
 	</form>
 </div>
 
-<script src="../common/js/jquery.js"></script>
-<script type="text/javascript">
-	function getRadioValue(name) {
-		var radios = document.getElementsByName(name);
-		var result;
-		for (var i = 0; i < radios.length; i++) {
-			if (radios[i].checked) {
-				result = radios[i].value;
-				break;
-			}
-		}
-		if (result <<%=outlierMinimum%>	|| result > <%=outlierMaximum%>	) {
-			alert('your data is detecting now!!');
-			$("#ex_box_div_a").hide("normal");
-			$("#ex_box_div_b").show("normal");
-		} else {
-			$("#ex_box_div_a").show("normal");
-			$("#ex_box_div_b").hide("normal");
-			document.form1.action = "RecieveSelfAssessmentStudentServlet";
-			document.form1.method = "post";
-			document.form1.submit();
-		}
-	}
-</script>
-<script type="text/javascript">
-	function getComment() {
-		document.form1.action = "RecieveSelfAssessmentStudentServlet";
-		document.form1.method = "post";
-		document.form1.submit();
-	}
-</script>
-<script type="text/javascript">
-	function getReset() {
-		document.form1.action = "ResetSelfAssessmentStudentServlet";
-		document.form1.method = "post";
-		document.form1.submit();
-	}
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#file_input').change(function() {

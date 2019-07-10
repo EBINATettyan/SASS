@@ -12,25 +12,22 @@ import utility.DriverAccessor;
 
 public class SelfAssessmentDAO extends DriverAccessor {
 
-	public void registSliderValue(String userId, int dateId, int comp1, int comp2, int comp3, int comp4,
-			String comp1Comment, String comp2Comment, String comp3Comment, String comp4Comment) {
+	public void registSelfAssessment(String studentId, int dateId, int comp1, int comp2,String comp1Comment, String comp2Comment, int comp1CheckId,int comp2CheckId) {
 
 		Connection con = null;
 		con = createConnection();
 		try {
-			String sql = "insert into slider_values(id,user_id,date_id,comp1,comp2,comp3,comp4,comp1_comment,comp2_comment,comp3_comment,comp4_comment) values(?, ?, ?, ?, ?,?,?,?,?,?,?)";
+			String sql = "insert into self_assessment_data(id,student_id,date_id,comp1,comp2,comp1_comment,comp2_comment,comp1_check,comp2_check) values(?, ?, ?, ?, ?,?,?,?,?)";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1, 0);
-			stmt.setString(2, userId);
+			stmt.setString(2, studentId);
 			stmt.setInt(3, dateId);
 			stmt.setInt(4, comp1);
 			stmt.setInt(5, comp2);
-			stmt.setInt(6, comp3);
-			stmt.setInt(7, comp4);
-			stmt.setString(8, comp1Comment);
-			stmt.setString(9, comp2Comment);
-			stmt.setString(10, comp3Comment);
-			stmt.setString(11, comp4Comment);
+			stmt.setString(6, comp1Comment);
+			stmt.setString(7, comp2Comment);
+			stmt.setInt(8, comp1CheckId);
+			stmt.setInt(9, comp2CheckId);
 			stmt.executeUpdate();
 			stmt.close();
 
@@ -73,7 +70,7 @@ public class SelfAssessmentDAO extends DriverAccessor {
 	}
 
 	/*
-	 * sliderValueの値を観点毎にもってくる
+	 * 自己評価の記録を観点毎にもってくる
 	 */
 	public ArrayList<Integer> selectSelfAssessmentDataOrderByCompId(String studentId, int dateId, int compId) {
 
