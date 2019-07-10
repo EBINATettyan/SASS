@@ -46,23 +46,27 @@ public class RecieveSelfAssessmentBeforeStudentServlet extends HttpServlet {
 		final File uploadDir = new File("/Users/csuser/Desktop/sassFile/" + studentId + "/" + dateId);
 		Part fl = request.getPart("fl");
 
-		// ファイル名が重複するのを防ぐため、時間を取得する
-		SimpleDateFormat timeSub = new SimpleDateFormat("ss");
-		String time = timeSub.format(new Date()); // 20161205124121559
-		String fileName = time.concat(fl.getSubmittedFileName()).toString();
-		FileManager fileManager = new FileManager();
-		fileName = fileManager.moveFileName(fileName);
-		int kindId = fileManager.IdentifyFileKind(fileName);
+		if (fl == null) {
+			;
+		} else {
+			// ファイル名が重複するのを防ぐため、時間を取得する
+			SimpleDateFormat timeSub = new SimpleDateFormat("ss");
+			String time = timeSub.format(new Date()); // 20161205124121559
+			String fileName = time.concat(fl.getSubmittedFileName()).toString();
+			FileManager fileManager = new FileManager();
+			fileName = fileManager.moveFileName(fileName);
+			int kindId = fileManager.IdentifyFileKind(fileName);
 
-		// ファイルの保存
-		save(fl, new File(uploadDir, fileName));
+			// ファイルの保存
+			save(fl, new File(uploadDir, fileName));
 
-		// uploadDirをStirngに変換
-		String path = uploadDir.toString();
+			// uploadDirをStirngに変換
+			String path = uploadDir.toString();
 
-		// DBに保存
-		FileDAO fileDAO = new FileDAO();
-		fileDAO.uploadFile(studentId, path, fileName, dateId, kindId, countId);
+			// DBに保存
+			FileDAO fileDAO = new FileDAO();
+			fileDAO.uploadFile(studentId, path, fileName, dateId, kindId, countId);
+		}
 
 		/* if文で条件分岐
 		 * 具体的には、compId==1であった場合、comp2の場合の外れ値を実行し、その値をsessionで保持し、getRequestDispatcher
@@ -75,7 +79,8 @@ public class RecieveSelfAssessmentBeforeStudentServlet extends HttpServlet {
 			session.setAttribute("comp" + countId, compValue);
 			request.setAttribute("countId", countId + 1);
 			session.setAttribute("checkId", checkId);
-			getServletContext().getRequestDispatcher("/Public/student/selfAssessment_before.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/Public/student/selfAssessment_before.jsp").forward(request,
+					response);
 		} else if (countId == 2) {
 			int comp1 = (int) session.getAttribute("comp1");
 			int comp2 = compValue;

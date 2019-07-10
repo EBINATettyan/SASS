@@ -63,14 +63,7 @@
 
 			<!-- ファイルのアップロード -->
 			<div class="input-group">
-				<input type="file" id="file_input" name="fl" size="75" style="display: none;" style="width: 100%"> <span class="input-group-btn">
-					<button class="btn btn-default" type="button" onclick="$('#file_input').click();">
-						<i class="glyphicon glyphicon-camera"></i>
-					</button>
-				</span>
-				<div class="input-group">
-					<input id="file" type="text" class="form-control" required disabled>
-				</div>
+				<input type="file" name="fl" style="width: 100%" id="fileImage" required> <img id="preview" width="350" height="250">
 			</div>
 
 			<%if(checkId == 0){ %>
@@ -89,6 +82,7 @@
 				<div style="text-align: right">
 					<button type="button" class="btn btn-warning" onclick="getReset()">reset</button>
 					<button type="submit" class="btn btn-success" onclick="getComment()">submit</button>
+					<br><br>
 				</div>
 			</div>
 		</div>
@@ -137,10 +131,12 @@
 	}
 </script>
 <script type="text/javascript">
-	$(function() {
-		$('#file_input').change(function() {
-			$('#file').val($(this).val());
-		});
-	})
+$('#fileImage').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $("#preview").attr('src', e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+});
 </script>
 </html>
