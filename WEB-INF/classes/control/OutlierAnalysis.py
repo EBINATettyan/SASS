@@ -2,8 +2,8 @@
 #!/Users/csuser/.pyenv/shims/python
 
 import sys
+sys.path.append("/Users/csuser/.pyenv/versions/anaconda3-4.2.0/lib/python3.5/site-packages")
 import pandas as pd
-import re
 
 args = sys.argv
 data_str = args[1]
@@ -44,3 +44,4 @@ df_maximum = pd.DataFrame({'name': ['outlier_maximum'],'score': [2.5]},columns=[
 df_maximum.loc[df_maximum.score == 2.5, 'score'] = outlier_maximum
 
 print(df_minimum['score'][0],df_maximum['score'][0])
+
