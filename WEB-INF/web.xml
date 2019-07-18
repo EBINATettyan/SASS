@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,20 +9,7 @@
 		<welcome-file>/Public/student/index.jsp</welcome-file>
 	</welcome-file-list>
 
-	<!-- <filter> <filter-name>LoginFilter</filter-name> <filter-class>filter.LoginFilter</filter-class>
-		</filter> <filter-mapping> <filter-name>LoginFilter</filter-name> <servlet-name>LogoutUserServlet</servlet-name>
-		<servlet-name>SearchDateUserServlet</servlet-name> <servlet-name>GoToSliderPageUserServlet</servlet-name>
-		<servlet-name>RecieveSliderValueUserServlet</servlet-name> <servlet-name>TestProgramServlet</servlet-name>
-		<servlet-name>GoToHomePageUserServlet</servlet-name> </filter-mapping> <security-constraint>
-		<web-resource-collection> <web-resource-name>jsp-file</web-resource-name>
-		<url-pattern>/Public/student/home.jsp</url-pattern> </web-resource-collection>
-		<auth-constraint> </auth-constraint> </security-constraint> -->
-
-	<!-- <error-page> <error-code>403</error-code> <location>/Public/student/redirectIndex.jsp</location>
-		</error-page> <error-page> <error-code>404</error-code> <location>/Public/student/redirectIndex.jsp</location>
-		</error-page> <error-page> <error-code>500</error-code> <location>/Public/student/redirectIndex.jsp</location>
-		</error-page> -->
-
+	<!-- 児童側のxml -->
 	<servlet>
 		<servlet-name>LoginStudentServlet</servlet-name>
 		<servlet-class>servlet.LoginStudentServlet</servlet-class>
@@ -102,4 +89,7 @@
 		<url-pattern>/Public/student/ResetSelfAssessmentStudentServlet
 		</url-pattern>
 	</servlet-mapping>
+
+	<!-- 教員側のxml -->
+
 </web-app>
