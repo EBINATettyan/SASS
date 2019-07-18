@@ -1,8 +1,7 @@
 # coding: UTF-8
-#!/Users/csuser/.pyenv/shims/python
+#!/bin/python
 
 import sys
-sys.path.append("/Users/csuser/.pyenv/versions/anaconda3-4.2.0/lib/python3.5/site-packages")
 import pandas as pd
 
 args = sys.argv
@@ -43,5 +42,5 @@ df_minimum.loc[df_minimum.score == 1.5, 'score'] = outlier_minimum
 df_maximum = pd.DataFrame({'name': ['outlier_maximum'],'score': [2.5]},columns=['name', 'score'])
 df_maximum.loc[df_maximum.score == 2.5, 'score'] = outlier_maximum
 
-print(df_minimum['score'][0],df_maximum['score'][0])
+print(str(df_minimum['score'][0])+","+str(df_maximum['score'][0]))
 

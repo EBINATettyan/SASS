@@ -22,7 +22,6 @@ import control.SystemManager;
 import dao.FileDAO;
 import dao.SelfAssessmentDAO;
 
-@SuppressWarnings("serial")
 //最大MaxSize
 @MultipartConfig(maxFileSize = 104857600)
 public class RecieveSelfAssessmentStudentServlet extends HttpServlet {
@@ -56,7 +55,7 @@ public class RecieveSelfAssessmentStudentServlet extends HttpServlet {
 
 		// ファイル保存先
 		//final File uploadDir = new File("/usr/share/tomcat/webapps/sassFile/" + studentId+"/"+dateId);
-		final File uploadDir = new File("/Users/csuser/Desktop/sassFile/" + studentId + "/" + dateId);
+		final File uploadDir = new File("/root/eclipse-workspace/sassFile/" + studentId + "/" + dateId);
 		Part fl = request.getPart("fl");
 		if (fl == null) {
 			;
@@ -101,12 +100,7 @@ public class RecieveSelfAssessmentStudentServlet extends HttpServlet {
 			 * 外れ値分析の実行
 			 */
 			SystemManager systemManager = new SystemManager();
-			ArrayList<Float> result_outlier_next_comp = systemManager.outlierAnalysisByJava(valueList);
-
-			System.out.println("<------------------------->");
-			System.out.println("数値データの下限値" + result_outlier_next_comp.get(0));
-			System.out.println("数値データの上限値" + result_outlier_next_comp.get(1));
-			System.out.println("<------------------------->");
+			ArrayList<Float> result_outlier_next_comp = systemManager.outlierAnalysisByPython(valueList);
 
 			int checkId = selfAssessmentDAO.checkSelfAssessmentRegistration(studentId, dateId);
 			session.setAttribute("checkId", checkId);

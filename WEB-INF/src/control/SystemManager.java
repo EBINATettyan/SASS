@@ -18,8 +18,8 @@ public class SystemManager {
 			String valueList_str = String.join(",", valueList_array);
 
 			ProcessBuilder pb = new ProcessBuilder();
-			pb.command("python", "/Users/csuser/Desktop/Python/OutlierAnalysis.py", valueList_str);
-			//pb.directory(new File("/Users/csuser/.pyenv/versions/anaconda3-4.2.0/lib/python3.5/site-packages/"));
+			//※pathは必要に応じて変更する必要あり
+			pb.command("python", "/root/eclipse-workspace/SASS/WEB-INF/src/control/OutlierAnalysis.py", valueList_str);
 			Process p = pb.start();
 
 			//InputStreamのスレッド開始
@@ -37,34 +37,30 @@ public class SystemManager {
 
 			System.out.println("戻り値：" + p.exitValue());
 
-			//標準出力の内容を出力
-			for (String s : it.getStringList()) {
-				System.out.println(s);
-			}
 			//標準エラーの内容を出力
 			for (String s : et.getStringList()) {
 				System.err.println(s);
 			}
 
-			/*
-			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			int exitCode = p.waitFor();
-			System.out.println("Exit Code : " + exitCode);
-			String result = new String(in.readLine());
-			System.out.println(result);
-
-			//次に、,の左側と右側を別々の変数に格納
+			String result = it.getStringList().toString();
+			result = result.replace("[", "");
+			result = result.replace("]", "");
 			int index = result.indexOf(",");
 			float result1 = Float.parseFloat(result.substring(0, index));
 			float result2 = Float.parseFloat(result.substring(index + 1));
-			*/
 
 			/*
 			 * 0番目にoutlier_minimum,1番目にoutlier_maximumを代入
 			 */
 			ArrayList<Float> resultList = new ArrayList<Float>();
-			resultList.add((float) 0);
-			resultList.add((float) 1);
+			resultList.add(result1);
+			resultList.add(result2);
+
+			//標準出力の内容を出力
+			System.out.println("<------------------------->");
+			System.out.println("数値データの下限値" + resultList.get(0));
+			System.out.println("数値データの上限値" + resultList.get(1));
+			System.out.println("<------------------------->");
 
 			return resultList;
 		} catch (Exception e) {
@@ -72,6 +68,7 @@ public class SystemManager {
 			return null;
 		}
 	}
+
 
 	public ArrayList<Float> outlierAnalysisByJava(ArrayList<Integer> valueList) throws IOException {
 
