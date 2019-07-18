@@ -13,6 +13,7 @@ import control.SystemManager;
 import dao.DateDAO;
 import dao.SelfAssessmentDAO;
 
+@SuppressWarnings("serial")
 public class GoToSelfAssessmentStudentServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -70,13 +71,8 @@ public class GoToSelfAssessmentStudentServlet extends HttpServlet {
 			 * 外れ値分析の実行
 			 */
 			SystemManager systemManager = new SystemManager();
-			ArrayList<Float> result_outlier = systemManager.outlierAnalysisByJava(valueList);
+			ArrayList<Float> result_outlier = systemManager.outlierAnalysisByPython(valueList);
 			session.setAttribute("result_outlier", result_outlier);
-
-			System.out.println("<------------------------->");
-			System.out.println("数値データの下限値" + result_outlier.get(0));
-			System.out.println("数値データの上限値" + result_outlier.get(1));
-			System.out.println("<------------------------->");
 
 			getServletContext().getRequestDispatcher("/Public/student/selfAssessment.jsp").forward(request, response);
 		}

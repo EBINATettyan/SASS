@@ -20,7 +20,6 @@ import control.FileManager;
 import dao.FileDAO;
 import dao.SelfAssessmentDAO;
 
-@SuppressWarnings("serial")
 //最大MaxSize
 @MultipartConfig(maxFileSize = 104857600)
 public class RecieveSelfAssessmentBeforeStudentServlet extends HttpServlet {
@@ -43,7 +42,7 @@ public class RecieveSelfAssessmentBeforeStudentServlet extends HttpServlet {
 
 		// ファイル保存先
 		//final File uploadDir = new File("/usr/share/tomcat/webapps/sassFile/" + studentId+"/"+dateId);
-		final File uploadDir = new File("/Users/csuser/Desktop/sassFile/" + studentId + "/" + dateId);
+		final File uploadDir = new File("/root/eclipse-workspace/sassFile/" + studentId + "/" + dateId);
 		Part fl = request.getPart("fl");
 
 		if (fl == null) {
