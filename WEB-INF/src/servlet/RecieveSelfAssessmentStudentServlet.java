@@ -5,10 +5,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -61,10 +59,11 @@ public class RecieveSelfAssessmentStudentServlet extends HttpServlet {
 			;
 		} else {
 
-			// ファイル名が重複するのを防ぐため、時間を取得する
-			SimpleDateFormat timeSub = new SimpleDateFormat("ss");
-			String time = timeSub.format(new Date()); // 20161205124121559
-			String fileName = time.concat(fl.getSubmittedFileName()).toString();
+			// ファイル名が重複するのを防ぐため、時間を取得する			
+			Calendar cTime = Calendar.getInstance();
+			String time = String.valueOf((cTime.get(Calendar.SECOND)));
+			System.out.println(time);
+			String fileName = time.concat(fl.getSubmittedFileName().toString());
 			FileManager fileManager = new FileManager();
 			fileName = fileManager.moveFileName(fileName);
 			int kindId = fileManager.IdentifyFileKind(fileName);

@@ -5,9 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +31,7 @@ public class RecieveSelfAssessmentBeforeStudentServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		//ファイル以外の入力情報の取得
+		// ファイル以外の入力情報の取得
 		HttpSession session = request.getSession(false);
 		String studentId = (String) session.getAttribute("studentId");
 		int countId = Integer.parseInt(request.getParameter("countId"));
@@ -41,21 +39,23 @@ public class RecieveSelfAssessmentBeforeStudentServlet extends HttpServlet {
 		int dateId = (int) session.getAttribute("dateId");
 
 		// ファイル保存先
-		//final File uploadDir = new File("/usr/share/tomcat/webapps/sassFile/" + studentId+"/"+dateId);
+		// final File uploadDir = new File("/usr/share/tomcat/webapps/sassFile/" +
+		// studentId+"/"+dateId);
 		final File uploadDir = new File("/root/eclipse-workspace/sassFile/" + studentId + "/" + dateId);
 		Part fl = request.getPart("fl");
 
 		if (fl == null) {
 			;
 		} else {
+
 			// ファイル名が重複するのを防ぐため、時間を取得する
-			SimpleDateFormat timeSub = new SimpleDateFormat("ss");
-			String time = timeSub.format(new Date()); // 20161205124121559
-			String fileName = time.concat(fl.getSubmittedFileName()).toString();
+			Calendar cTime = Calendar.getInstance();
+			String time = String.valueOf((cTime.get(Calendar.SECOND)));
+			System.out.println(time);
+			String fileName = time.concat(fl.getSubmittedFileName().toString());
 			FileManager fileManager = new FileManager();
 			fileName = fileManager.moveFileName(fileName);
 			int kindId = fileManager.IdentifyFileKind(fileName);
-
 			// ファイルの保存
 			save(fl, new File(uploadDir, fileName));
 
@@ -67,7 +67,8 @@ public class RecieveSelfAssessmentBeforeStudentServlet extends HttpServlet {
 			fileDAO.uploadFile(studentId, path, fileName, dateId, kindId, countId);
 		}
 
-		/* if文で条件分岐
+		/*
+		 * if文で条件分岐
 		 * 具体的には、compId==1であった場合、comp2の場合の外れ値を実行し、その値をsessionで保持し、getRequestDispatcher
 		 * compId==2であった場合は、sessionで保持された自己評価の記録とともにDBに記録し、活動を選ぶ画面に遷移させる
 		 */

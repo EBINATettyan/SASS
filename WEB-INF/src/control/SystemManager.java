@@ -6,8 +6,6 @@ import java.util.ArrayList;
 public class SystemManager {
 	public ArrayList<Float> outlierAnalysisByPython(ArrayList<Integer> valueList) throws IOException {
 
-		//https://stackoverflow.com/questions/26171862/java-processbuilder-not-able-to-run-python-script-in-java
-
 		try {
 
 			ArrayList<String> valueList_new = new ArrayList<String>();
